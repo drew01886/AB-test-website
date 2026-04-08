@@ -59,7 +59,7 @@
       border-bottom: 1px solid rgba(255,255,255,0.06);
       transition: background 0.3s ease;
     }
-    .nav-logo img { height: 38px; object-fit: contain; }
+    .nav-logo img { height: 64px; object-fit: contain; }
     .nav-links { display: flex; align-items: center; gap: 2rem; list-style: none; }
     .nav-links a {
       color: var(--gray-200); text-decoration: none; font-size: 0.9rem;
@@ -665,7 +665,7 @@
   <!-- ── NAVBAR ─────────────────────────────────────────── -->
   <nav id="mainNav">
     <a href="#home" class="nav-logo">
-      <img src="/Brand_Assets/extracted/image-1.jpg" alt="Astound Broadband — WiFi, Mobile, TV">
+      <img id="navLogo" src="/Brand_Assets/extracted/image-1.jpg" alt="Astound Broadband — WiFi, Mobile, TV">
     </a>
     <ul class="nav-links" id="navLinks">
       <li><a href="#internet">Internet</a></li>
@@ -1171,6 +1171,35 @@
     document.querySelectorAll('.nav-links a').forEach(a => {
       a.addEventListener('click', () => mainNav.classList.remove('nav-open'));
     });
+
+    // Remove white background from nav logo using canvas pixel processing
+    (function() {
+      const img = document.getElementById('navLogo');
+      function processLogo() {
+        const canvas = document.createElement('canvas');
+        canvas.width = img.naturalWidth;
+        canvas.height = img.naturalHeight;
+        const ctx = canvas.getContext('2d');
+        ctx.drawImage(img, 0, 0);
+        const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        const d = imageData.data;
+        for (let i = 0; i < d.length; i += 4) {
+          const r = d[i], g = d[i+1], b = d[i+2];
+          const whiteness = Math.min(r, g, b);
+          // Fade out near-white pixels gradually to eliminate fringe
+          if (whiteness > 200) {
+            d[i+3] = Math.max(0, Math.floor(255 * (1 - (whiteness - 200) / 55)));
+          }
+        }
+        ctx.putImageData(imageData, 0, 0);
+        img.src = canvas.toDataURL('image/png');
+      }
+      if (img.complete && img.naturalWidth) {
+        processLogo();
+      } else {
+        img.addEventListener('load', processLogo);
+      }
+    })();
 
     // QR Code — pre-filled SMS to Drew
     new QRCode(document.getElementById('qrcode'), {
