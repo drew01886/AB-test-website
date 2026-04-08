@@ -699,7 +699,7 @@
             <div class="drew-avatar"><img src="/Brand_Assets/Drew_Pics/1000005561.jpg" alt="Drew Stern"></div>
             <div class="drew-info">
               <h4>Drew Stern</h4>
-              <p>Your Local Astound Rep</p>
+              <p>Astound Territory Manager</p>
             </div>
           </div>
           <div class="hero-stat">
@@ -727,7 +727,7 @@
   <!-- ── TRUST BAR ──────────────────────────────────────── -->
   <div class="trust-bar">
     <div class="trust-bar-inner">
-      <div class="trust-item"><span class="ti">🏆</span> 11× Best Internet Award</div>
+      <div class="trust-item"><span class="ti">🏆</span> <a href="https://www.pcmag.com/articles/readers-choice-2025-isps" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;text-underline-offset:3px;text-decoration-color:rgba(255,255,255,0.3);transition:text-decoration-color 0.2s;" onmouseover="this.style.textDecorationColor='var(--green-400)'" onmouseout="this.style.textDecorationColor='rgba(255,255,255,0.3)'">11× Best Internet Award</a></div>
       <div class="t-div"></div>
       <div class="trust-item"><span class="ti">🔒</span> No Contracts</div>
       <div class="t-div"></div>
@@ -946,7 +946,7 @@
         <div class="drew-profile">
           <div class="drew-avatar-large"><img src="/Brand_Assets/Drew_Pics/1000005561.jpg" alt="Drew Stern"></div>
           <h3>Drew Stern</h3>
-          <p class="role">Direct Sales Representative</p>
+          <p class="role">Territory Manager</p>
           <p class="area">Astound Broadband &middot; Greater Boston, MA</p>
         </div>
         <div>
@@ -1111,7 +1111,7 @@
     <div class="footer-inner">
       <div class="footer-top">
         <div class="footer-brand">
-          <img src="/Brand_Assets/extracted/image-1.jpg" alt="Astound Broadband">
+          <img id="footerLogo" src="/Brand_Assets/extracted/image-1.jpg" alt="Astound Broadband">
           <p class="fd">Your local Astound Broadband representative serving Greater Boston, MA. Internet, mobile, and TV — all at a price that never changes.</p>
           <div class="fc">
             <a href="tel:6175941497">617-594-1497</a>
@@ -1138,8 +1138,8 @@
         </div>
       </div>
       <div class="footer-bottom">
-        <p>&copy; 2026 Drew Stern &middot; Astound Broadband Direct Sales Representative &middot; Greater Boston, MA</p>
-        <p>This site is operated by Drew Stern, an independent Astound Broadband sales representative.</p>
+        <p>&copy; 2026 Drew Stern &middot; Astound Broadband Territory Manager &middot; Greater Boston, MA</p>
+        <p>This site is operated by Drew Stern, Astound Broadband Territory Manager.</p>
       </div>
       <p class="footer-disclaimer">* Pricing and availability subject to change without notice. Not all services or offers available in all areas. Price for Life guarantee applies to qualifying plans only — see terms at sign-up. Gift card amounts subject to qualifying terms and availability. Astound Broadband is a registered trademark of its respective owner. Mobile services provided by Astound Mobile, powered by the T-Mobile network. 11&times; Best Internet designation based on PC Magazine Readers&#39; Choice Awards.</p>
     </div>
@@ -1172,10 +1172,9 @@
       a.addEventListener('click', () => mainNav.classList.remove('nav-open'));
     });
 
-    // Remove white background from nav logo using canvas pixel processing
-    (function() {
-      const img = document.getElementById('navLogo');
-      function processLogo() {
+    // Remove white background from logos using canvas pixel processing
+    function removeWhiteBg(img) {
+      function process() {
         const canvas = document.createElement('canvas');
         canvas.width = img.naturalWidth;
         canvas.height = img.naturalHeight;
@@ -1184,9 +1183,7 @@
         const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
         const d = imageData.data;
         for (let i = 0; i < d.length; i += 4) {
-          const r = d[i], g = d[i+1], b = d[i+2];
-          const whiteness = Math.min(r, g, b);
-          // Fade out near-white pixels gradually to eliminate fringe
+          const whiteness = Math.min(d[i], d[i+1], d[i+2]);
           if (whiteness > 200) {
             d[i+3] = Math.max(0, Math.floor(255 * (1 - (whiteness - 200) / 55)));
           }
@@ -1194,12 +1191,10 @@
         ctx.putImageData(imageData, 0, 0);
         img.src = canvas.toDataURL('image/png');
       }
-      if (img.complete && img.naturalWidth) {
-        processLogo();
-      } else {
-        img.addEventListener('load', processLogo);
-      }
-    })();
+      if (img.complete && img.naturalWidth) { process(); } else { img.addEventListener('load', process); }
+    }
+    removeWhiteBg(document.getElementById('navLogo'));
+    removeWhiteBg(document.getElementById('footerLogo'));
 
     // QR Code — pre-filled SMS to Drew
     new QRCode(document.getElementById('qrcode'), {
