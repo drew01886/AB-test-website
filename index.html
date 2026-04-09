@@ -9,6 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" async></script>
 
   <style>
     :root {
@@ -80,6 +81,30 @@
       background: none; border: none;
     }
     .nav-hamburger span { display: block; width: 22px; height: 2px; background: var(--white); }
+
+    /* Google Translate — hide default widget, we use our own */
+    #google_translate_element { display: none; }
+    .goog-te-banner-frame { display: none !important; }
+    body { top: 0 !important; }
+
+    /* Custom language selector */
+    .nav-lang-wrap { position: relative; display: flex; align-items: center; }
+    .nav-lang-wrap::before {
+      content: '🌐'; position: absolute; left: 0.6rem; pointer-events: none;
+      font-size: 0.82rem; line-height: 1;
+    }
+    .nav-lang-select {
+      background: rgba(255,255,255,0.07); color: var(--white);
+      border: 1px solid rgba(255,255,255,0.16); border-radius: 6px;
+      padding: 0.38rem 0.6rem 0.38rem 1.9rem;
+      font-size: 0.82rem; font-family: 'Plus Jakarta Sans', sans-serif;
+      cursor: pointer; -webkit-appearance: none; appearance: none;
+      transition: border-color 0.2s ease, background 0.2s ease;
+      min-width: 120px;
+    }
+    .nav-lang-select:hover { border-color: rgba(57,181,74,0.45); background: rgba(255,255,255,0.11); }
+    .nav-lang-select:focus { outline: none; border-color: rgba(57,181,74,0.5); }
+    .nav-lang-select option { background: #16162E; color: #fff; }
 
     /* ── HERO ───────────────────────────────────────────── */
     .hero {
@@ -719,6 +744,27 @@
       <li><a href="#drew">About Drew</a></li>
       <li><a href="#contact" class="nav-cta">Get Started</a></li>
     </ul>
+    <div id="google_translate_element"></div>
+    <div class="nav-lang-wrap">
+      <select class="nav-lang-select" id="langSelect" onchange="doTranslate(this.value)" aria-label="Select language">
+        <option value="">Language</option>
+        <option value="es">Español</option>
+        <option value="pt">Português</option>
+        <option value="ru">Русский</option>
+        <option value="zh-CN">中文 (简体)</option>
+        <option value="zh-TW">中文 (繁體)</option>
+        <option value="fr">Français</option>
+        <option value="de">Deutsch</option>
+        <option value="it">Italiano</option>
+        <option value="pl">Polski</option>
+        <option value="ar">العربية</option>
+        <option value="vi">Tiếng Việt</option>
+        <option value="ko">한국어</option>
+        <option value="hi">हिन्दी</option>
+        <option value="ht">Kreyòl Ayisyen</option>
+        <option value="uk">Українська</option>
+      </select>
+    </div>
     <button class="nav-hamburger" id="hamburger" aria-label="Open menu">
       <span></span><span></span><span></span>
     </button>
@@ -812,14 +858,14 @@
             <li><span class="ck">✓</span> Free modem &amp; standard WiFi</li>
             <li><span class="ck">✓</span> No contracts or hidden fees</li>
             <li><span class="ck">✓</span> Easy setup, fast install</li>
-            <li><span class="ck">✓</span> Free installation with Drew</li>
+            <li><span class="ck">✓</span> Free installation</li>
           </ul>
           <a href="#contact" class="plan-cta outline">Get Started</a>
         </div>
 
         <!-- Gig WiFi — Featured -->
         <div class="plan-card featured fade-up" style="transition-delay:0.1s;">
-          <div class="plan-pop">Most Popular</div>
+          <div class="plan-pop">Popular</div>
           <div class="plan-speed">Up to 1,000 Mbps</div>
           <div class="plan-name">Gig WiFi</div>
           <div class="plan-price">
@@ -835,13 +881,14 @@
             <li><span class="ck">✓</span> No contracts — price never changes</li>
             <li><span class="gf">🎁</span> Up to $200 Gift Card included</li>
             <li><span class="ck">✓</span> Real people, real support</li>
-            <li><span class="ck">✓</span> Free installation with Drew</li>
+            <li><span class="ck">✓</span> Free installation</li>
           </ul>
           <a href="#contact" class="plan-cta solid">Get Gig WiFi</a>
         </div>
 
         <!-- 1.5 Gig WiFi -->
-        <div class="plan-card fade-up" style="transition-delay:0.2s;">
+        <div class="plan-card featured fade-up" style="transition-delay:0.2s;">
+          <div class="plan-pop">Popular</div>
           <div class="plan-speed">Up to 1,500 Mbps</div>
           <div class="plan-name">1.5 Gig WiFi</div>
           <div class="plan-price">
@@ -857,9 +904,9 @@
             <li><span class="ck">✓</span> eero Mesh WiFi routers included</li>
             <li><span class="gf">🎁</span> Up to $300 Gift Card included</li>
             <li><span class="ck">✓</span> No contracts — price never changes</li>
-            <li><span class="ck">✓</span> Free installation with Drew</li>
+            <li><span class="ck">✓</span> Free installation</li>
           </ul>
-          <a href="#contact" class="plan-cta outline">Get 1.5 Gig</a>
+          <a href="#contact" class="plan-cta solid">Get 1.5 Gig</a>
         </div>
 
       </div>
@@ -1207,6 +1254,21 @@
   </div>
 
   <script>
+    // Google Translate init — hidden widget, driven by our custom select
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
+        pageLanguage: 'en',
+        includedLanguages: 'es,pt,ru,zh-CN,zh-TW,fr,de,it,pl,ar,vi,ko,hi,ht,uk',
+        autoDisplay: false,
+      }, 'google_translate_element');
+    }
+    function doTranslate(lang) {
+      const gtSelect = document.querySelector('.goog-te-combo');
+      if (!gtSelect) return;
+      gtSelect.value = lang;
+      gtSelect.dispatchEvent(new Event('change'));
+    }
+
     // Channel Lineup PDF modal
     function openChannelLineup() {
       const iframe = document.getElementById('channelIframe');
