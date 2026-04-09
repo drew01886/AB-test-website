@@ -60,7 +60,11 @@
       border-bottom: 1px solid rgba(255,255,255,0.06);
       transition: background 0.3s ease;
     }
-    .nav-logo img { height: 64px; object-fit: contain; }
+    .nav-logo { display: flex; align-items: center; gap: 0.65rem; }
+    .logo-tv-anchor { position: relative; display: inline-block; }
+    .logo-burst-clip { width: 62px; height: 54px; overflow: hidden; position: absolute; bottom: -3px; right: -42px; -webkit-mask-image: radial-gradient(ellipse 72% 68% at 72% 34%, black 52%, transparent 100%); mask-image: radial-gradient(ellipse 72% 68% at 72% 34%, black 52%, transparent 100%); }
+    .logo-burst-clip img { position: absolute; height: 96px !important; width: 162px !important; max-width: none !important; top: -2px; left: -100px; object-fit: unset !important; margin-bottom: 0 !important; }
+    .logo-wmt { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.15rem; color: #39B54A; letter-spacing: 0.01em; white-space: nowrap; line-height: 1.2; }
     .nav-links { display: flex; align-items: center; gap: 2rem; list-style: none; }
     .nav-links a {
       color: var(--gray-200); text-decoration: none; font-size: 0.9rem;
@@ -757,9 +761,9 @@
 
   <!-- ── NAVBAR ─────────────────────────────────────────── -->
   <nav id="mainNav">
-    <a href="https://www.astound.com/" target="_blank" rel="noopener" class="nav-logo">
-      <img id="navLogo" src="/Brand_Assets/extracted/image-1.jpg" alt="Astound Broadband — WiFi, Mobile, TV">
-    </a>
+    <div class="nav-logo">
+      <span class="logo-wmt">WiFi · Mobile · <span class="logo-tv-anchor">TV<div class="logo-burst-clip"><img id="navLogo" src="/Brand_Assets/extracted/image-1.jpg" alt="WiFi, Mobile, TV"></div></span></span>
+    </div>
     <ul class="nav-links" id="navLinks">
       <li><a href="#internet">Internet</a></li>
       <li><a href="#mobile">Mobile</a></li>
@@ -863,10 +867,10 @@
         <h2 class="section-heading">Pick Your Perfect Plan</h2>
         <p class="section-sub">All plans include free professional installation when you sign up through Drew. Your price is locked in — no surprises, ever.</p>
       </div>
-      <!-- WiFi Plans Group -->
+      <!-- Affordable Plans Group -->
       <div class="plans-group">
-        <div class="plans-group-label">WiFi Plans — Affordable Options</div>
-        <div class="plans-grid-2">
+        <div class="plans-group-label">Affordable Plans</div>
+        <div class="plans-grid">
 
           <!-- WiFi Starter $9.95 -->
           <div class="plan-card fade-up">
@@ -912,16 +916,8 @@
             <a href="#contact" class="plan-cta outline">Get Started</a>
           </div>
 
-        </div>
-      </div>
-
-      <!-- Fiber Plans Group -->
-      <div class="plans-group">
-        <div class="plans-group-label">Fiber Plans — Price for Life</div>
-        <div class="plans-grid">
-
           <!-- Fiber $30 -->
-          <div class="plan-card fade-up">
+          <div class="plan-card fade-up" style="transition-delay:0.2s;">
             <div class="plan-speed">300 Mbps</div>
             <div class="plan-name">Fiber</div>
             <div class="plan-price">
@@ -934,12 +930,20 @@
             <ul class="plan-features">
               <li><span class="ck">✓</span> 300 Mbps fiber-powered</li>
               <li><span class="ck">✓</span> Free modem &amp; standard WiFi</li>
-              <li><span class="ck">✓</span> No contracts — price never changes</li>
+              <li><span class="ck">✓</span> No contracts or hidden fees</li>
               <li><span class="ck">✓</span> Real people, real support</li>
               <li><span class="ck">✓</span> Free installation</li>
             </ul>
             <a href="#contact" class="plan-cta outline">Get Started</a>
           </div>
+
+        </div>
+      </div>
+
+      <!-- Fiber Plans Group -->
+      <div class="plans-group">
+        <div class="plans-group-label">Fiber Plans — Price for Life</div>
+        <div class="plans-grid-2">
 
           <!-- Gig Fiber $40 — Featured -->
           <div class="plan-card featured fade-up" style="transition-delay:0.1s;">
@@ -1286,7 +1290,9 @@
     <div class="footer-inner">
       <div class="footer-top">
         <div class="footer-brand">
-          <a href="https://www.astound.com/" target="_blank" rel="noopener"><img id="footerLogo" src="/Brand_Assets/extracted/image-1.jpg" alt="Astound Broadband"></a>
+          <div class="nav-logo" style="margin-bottom:0.75rem;">
+            <span class="logo-wmt">WiFi · Mobile · <span class="logo-tv-anchor">TV<div class="logo-burst-clip"><img id="footerLogo" src="/Brand_Assets/extracted/image-1.jpg" alt="WiFi, Mobile, TV"></div></span></span>
+          </div>
           <p class="fd">Your local Astound Broadband representative serving Greater Boston, MA. Internet, mobile, and TV — all at a price that never changes.</p>
           <div class="fc">
             <a href="tel:6175941497">617-594-1497</a>
@@ -1309,7 +1315,6 @@
             <li><a href="#drew">About Drew</a></li>
             <li><a href="#contact">Get Started</a></li>
             <li><a href="tel:6175941497">Call Drew</a></li>
-            <li><a href="https://www.astound.com/" target="_blank" rel="noopener">Astound National Site ↗</a></li>
           </ul>
         </div>
       </div>
