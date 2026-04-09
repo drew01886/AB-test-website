@@ -469,7 +469,7 @@
       box-shadow: 0 0 48px rgba(57,181,74,0.14);
     }
     .drew-avatar-large img { width: 100%; height: 100%; object-fit: cover; object-position: center 15%; }
-    .drew-profile h3 { font-family: 'Syne', sans-serif; font-size: 1.25rem; font-weight: 800; color: var(--white); }
+    .drew-profile h3 { font-family: 'Syne', sans-serif; font-size: 1.25rem; font-weight: 700; line-height: 1.3; color: var(--white); }
     .drew-profile .role { font-size: 0.82rem; color: var(--green-400); font-weight: 600; margin-top: 0.2rem; }
     .drew-profile .area { font-size: 0.75rem; color: rgba(255,255,255,0.42); margin-top: 0.15rem; }
     .drew-benefits {
@@ -523,8 +523,8 @@
       border-radius: 20px; padding: 2.5rem;
     }
     .contact-form-wrap h3 {
-      font-family: 'Syne', sans-serif; font-size: 1.45rem; font-weight: 800;
-      color: var(--white); margin-bottom: 1.7rem;
+      font-family: 'Syne', sans-serif; font-size: 1.45rem; font-weight: 700;
+      line-height: 1.25; color: var(--white); margin-bottom: 1.7rem;
     }
     .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
     .form-group { margin-bottom: 1.15rem; }
@@ -564,6 +564,51 @@
     .form-submit:active { transform: translateY(0); }
     .form-submit:disabled { background: var(--purple-600); color: var(--white); cursor: default; transform: none !important; box-shadow: none; }
     .form-note { font-size: 0.72rem; color: var(--gray-500); margin-top: 0.85rem; text-align: center; }
+
+    /* ── PDF MODAL ──────────────────────────────────────── */
+    .pdf-modal-backdrop {
+      display: none; position: fixed; inset: 0; z-index: 200;
+      background: rgba(6,6,16,0.88); backdrop-filter: blur(6px);
+      align-items: center; justify-content: center; padding: 1.5rem;
+    }
+    .pdf-modal-backdrop.open { display: flex; }
+    .pdf-modal {
+      background: var(--dark-700); border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 16px; overflow: hidden;
+      width: 100%; max-width: 860px; max-height: 90vh;
+      display: flex; flex-direction: column;
+      box-shadow: 0 32px 100px rgba(0,0,0,0.7);
+      animation: fadeUp 0.25s ease both;
+    }
+    .pdf-modal-header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.07);
+      flex-shrink: 0;
+    }
+    .pdf-modal-header h4 {
+      font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 700;
+      color: var(--white); letter-spacing: 0.01em;
+    }
+    .pdf-modal-actions { display: flex; align-items: center; gap: 0.75rem; }
+    .pdf-download-btn {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      background: rgba(57,181,74,0.12); border: 1px solid rgba(57,181,74,0.28);
+      color: var(--green-400); font-size: 0.82rem; font-weight: 600;
+      padding: 0.4rem 0.9rem; border-radius: 6px; text-decoration: none;
+      transition: background 0.2s ease;
+    }
+    .pdf-download-btn:hover { background: rgba(57,181,74,0.22); }
+    .pdf-close-btn {
+      width: 32px; height: 32px; border-radius: 6px; border: none; cursor: pointer;
+      background: rgba(255,255,255,0.07); color: var(--white); font-size: 1.1rem;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s ease;
+    }
+    .pdf-close-btn:hover { background: rgba(255,255,255,0.15); }
+    .pdf-modal iframe {
+      width: 100%; flex: 1; min-height: 0; border: none; display: block;
+      height: 75vh;
+    }
 
     /* ── QR CODE ────────────────────────────────────────── */
     .qr-widget {
@@ -664,7 +709,7 @@
 
   <!-- ── NAVBAR ─────────────────────────────────────────── -->
   <nav id="mainNav">
-    <a href="#home" class="nav-logo">
+    <a href="https://www.astound.com/" target="_blank" rel="noopener" class="nav-logo">
       <img id="navLogo" src="/Brand_Assets/extracted/image-1.jpg" alt="Astound Broadband — WiFi, Mobile, TV">
     </a>
     <ul class="nav-links" id="navLinks">
@@ -906,7 +951,7 @@
             <li>Unlock extra savings when you add multiple lines</li>
           </ul>
           <div style="margin-top:1.75rem;">
-            <a href="#contact" class="btn-primary">Ask Drew About Mobile</a>
+            <a href="#contact" class="btn-primary">Ask About Mobile</a>
           </div>
         </div>
       </div>
@@ -929,7 +974,7 @@
             <li><span class="fi">📋</span> Contact Drew for the full channel lineup and current TV offers</li>
           </ul>
           <div style="margin-top:2rem;">
-            <a href="#contact" class="btn-primary">Get Full Channel Lineup</a>
+            <button onclick="openChannelLineup()" class="btn-primary" style="cursor:pointer;">Get Full Channel Lineup</button>
           </div>
         </div>
         <div class="tv-visual">
@@ -1035,7 +1080,7 @@
               <div id="qrcode"></div>
             </div>
             <div class="qr-text">
-              <div class="qt">📱 Scan to Text Drew</div>
+              <div class="qt">📱 Or, Scan to Text Drew</div>
               <p>Point your phone camera at the QR code to open a pre-filled text message. Drew will get back to you right away.</p>
             </div>
           </div>
@@ -1043,7 +1088,7 @@
 
         <div class="contact-form-wrap">
           <h3>Let's Get You Connected</h3>
-          <form id="contactForm" onsubmit="handleSubmit(event)">
+          <form id="contactForm" action="https://formspree.io/f/xojpzjdo" method="POST" onsubmit="handleSubmit(event)">
             <div class="form-row">
               <div class="form-group">
                 <label>First Name</label>
@@ -1111,7 +1156,7 @@
     <div class="footer-inner">
       <div class="footer-top">
         <div class="footer-brand">
-          <img id="footerLogo" src="/Brand_Assets/extracted/image-1.jpg" alt="Astound Broadband">
+          <a href="https://www.astound.com/" target="_blank" rel="noopener"><img id="footerLogo" src="/Brand_Assets/extracted/image-1.jpg" alt="Astound Broadband"></a>
           <p class="fd">Your local Astound Broadband representative serving Greater Boston, MA. Internet, mobile, and TV — all at a price that never changes.</p>
           <div class="fc">
             <a href="tel:6175941497">617-594-1497</a>
@@ -1134,6 +1179,7 @@
             <li><a href="#drew">About Drew</a></li>
             <li><a href="#contact">Get Started</a></li>
             <li><a href="tel:6175941497">Call Drew</a></li>
+            <li><a href="https://www.astound.com/" target="_blank" rel="noopener">Astound National Site ↗</a></li>
           </ul>
         </div>
       </div>
@@ -1145,7 +1191,43 @@
     </div>
   </footer>
 
+  <!-- ── CHANNEL LINEUP MODAL ──────────────────────────── -->
+  <div class="pdf-modal-backdrop" id="channelModal" onclick="closeChannelLineup(event)">
+    <div class="pdf-modal">
+      <div class="pdf-modal-header">
+        <h4>📺 Astound TV — Full Channel Lineup</h4>
+        <div class="pdf-modal-actions">
+          <a href="/Brand_Assets/Channel Lineup.pdf" download class="pdf-download-btn">⬇ Download PDF</a>
+          <button class="pdf-close-btn" onclick="document.getElementById('channelModal').classList.remove('open');document.body.style.overflow='';" aria-label="Close">✕</button>
+        </div>
+      </div>
+      <iframe id="channelIframe" src="" title="Astound TV Channel Lineup"></iframe>
+    </div>
+  </div>
+
   <script>
+    // Channel Lineup PDF modal
+    function openChannelLineup() {
+      const iframe = document.getElementById('channelIframe');
+      if (!iframe.src || iframe.src === window.location.href) {
+        iframe.src = '/Brand_Assets/Channel Lineup.pdf';
+      }
+      document.getElementById('channelModal').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeChannelLineup(e) {
+      if (e.target === document.getElementById('channelModal')) {
+        document.getElementById('channelModal').classList.remove('open');
+        document.body.style.overflow = '';
+      }
+    }
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') {
+        document.getElementById('channelModal').classList.remove('open');
+        document.body.style.overflow = '';
+      }
+    });
+
     // Scroll-triggered fade-up animations
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
@@ -1206,12 +1288,31 @@
       correctLevel: QRCode.CorrectLevel.M,
     });
 
-    // Form submission
-    function handleSubmit(e) {
+    // Form submission — sends data to Formspree, which emails Drew directly
+    async function handleSubmit(e) {
       e.preventDefault();
       const btn = document.getElementById('submitBtn');
-      btn.textContent = '✓ Sent! Drew will reach out within 24 hours.';
+      btn.textContent = 'Sending…';
       btn.disabled = true;
+
+      const data = new FormData(e.target);
+      try {
+        const res = await fetch('https://formspree.io/f/xojpzjdo', {
+          method: 'POST',
+          body: data,
+          headers: { 'Accept': 'application/json' }
+        });
+        if (res.ok) {
+          btn.textContent = '✓ Sent! Drew will reach out within 24 hours.';
+          e.target.reset();
+        } else {
+          btn.textContent = 'Something went wrong — please call Drew directly.';
+          btn.disabled = false;
+        }
+      } catch {
+        btn.textContent = 'Something went wrong — please call Drew directly.';
+        btn.disabled = false;
+      }
     }
   </script>
 </body>
