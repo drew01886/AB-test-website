@@ -737,9 +737,11 @@
       .footer-top { grid-template-columns: 1fr; gap: 2rem; }
     }
     @media (max-width: 768px) {
+      nav { padding: 0 1rem; }
       .nav-links { display: none; }
-      .nav-hamburger { display: flex; margin-left: 0.75rem; }
-      .nav-lang-wrap { margin-left: auto; }
+      .nav-hamburger { display: flex; margin-left: 0.75rem; flex-shrink: 0; }
+      .nav-lang-wrap { margin-left: auto; flex-shrink: 0; }
+      .nav-lang-select { min-width: 0; width: 100px; }
       .logo-wmt { font-size: 0.82rem; }
       #mainNav .logo-burst-clip { display: none; }
       .why-grid { grid-template-columns: 1fr; }
