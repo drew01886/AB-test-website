@@ -63,7 +63,7 @@
     .nav-logo { display: flex; align-items: center; gap: 0.65rem; }
     .logo-tv-anchor { position: relative; display: inline-block; }
     .logo-burst-clip { width: 62px; height: 54px; overflow: hidden; position: absolute; bottom: -3px; right: -42px; -webkit-mask-image: radial-gradient(ellipse 72% 68% at 72% 34%, black 52%, transparent 100%); mask-image: radial-gradient(ellipse 72% 68% at 72% 34%, black 52%, transparent 100%); }
-    .logo-burst-clip img { position: absolute; height: 96px !important; width: 162px !important; max-width: none !important; top: -2px; left: -100px; object-fit: unset !important; margin-bottom: 0 !important; }
+    .logo-burst-clip img { position: absolute; height: 62px !important; width: auto !important; max-width: none !important; top: -4px; left: -30px; object-fit: unset !important; margin-bottom: 0 !important; }
     .logo-wmt { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.15rem; color: #39B54A; letter-spacing: 0.01em; white-space: nowrap; line-height: 1.2; }
     .nav-links { display: flex; align-items: center; gap: 2rem; list-style: none; }
     .nav-links a {
@@ -738,7 +738,8 @@
     }
     @media (max-width: 768px) {
       .nav-links { display: none; }
-      .nav-hamburger { display: flex; }
+      .nav-hamburger { display: flex; margin-left: 0.75rem; }
+      .nav-lang-wrap { margin-left: auto; }
       .logo-wmt { font-size: 0.82rem; }
       #mainNav .logo-burst-clip { display: none; }
       .why-grid { grid-template-columns: 1fr; }
@@ -765,7 +766,7 @@
   <!-- ── NAVBAR ─────────────────────────────────────────── -->
   <nav id="mainNav">
     <div class="nav-logo">
-      <span class="logo-wmt">WiFi · Mobile · <span class="logo-tv-anchor">TV<div class="logo-burst-clip"><img id="navLogo" src="/Brand_Assets/extracted/image-1.jpg" alt="WiFi, Mobile, TV"></div></span></span>
+      <span class="logo-wmt">WiFi · Mobile · <span class="logo-tv-anchor">TV<div class="logo-burst-clip"><img id="navLogo" src="/Brand_Assets/Brand__Info/Astound-Symbol.png" alt="WiFi, Mobile, TV"></div></span></span>
     </div>
     <ul class="nav-links" id="navLinks">
       <li><a href="#internet">Internet</a></li>
@@ -1295,7 +1296,7 @@
       <div class="footer-top">
         <div class="footer-brand">
           <div class="nav-logo" style="margin-bottom:0.75rem;">
-            <span class="logo-wmt">WiFi · Mobile · <span class="logo-tv-anchor">TV<div class="logo-burst-clip"><img id="footerLogo" src="/Brand_Assets/extracted/image-1.jpg" alt="WiFi, Mobile, TV"></div></span></span>
+            <span class="logo-wmt">WiFi · Mobile · <span class="logo-tv-anchor">TV<div class="logo-burst-clip"><img id="footerLogo" src="/Brand_Assets/Brand__Info/Astound-Symbol.png" alt="WiFi, Mobile, TV"></div></span></span>
           </div>
           <p class="fd">Your local Astound Broadband representative serving Greater Boston, MA. Internet, mobile, and TV — all at a price that never changes.</p>
           <div class="fc">
