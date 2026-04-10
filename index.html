@@ -777,7 +777,7 @@
     <div id="google_translate_element"></div>
     <div class="nav-lang-wrap">
       <select class="nav-lang-select" id="langSelect" onchange="doTranslate(this.value)" aria-label="Select language">
-        <option value="">Language</option>
+        <option value="">English</option>
         <option value="es">Español</option>
         <option value="pt">Português</option>
         <option value="ru">Русский</option>
@@ -1359,6 +1359,15 @@
       gtSelect.value = lang;
       gtSelect.dispatchEvent(new Event('change'));
     }
+    // Sync our select back to English if Google reverts (e.g. user dismisses the bar)
+    setInterval(() => {
+      const gtSelect = document.querySelector('.goog-te-combo');
+      const ourSelect = document.getElementById('langSelect');
+      if (!gtSelect || !ourSelect) return;
+      if ((gtSelect.value === '' || gtSelect.value === 'en') && ourSelect.value !== '') {
+        ourSelect.value = '';
+      }
+    }, 500);
 
     // Channel Lineup PDF modal
     function openChannelLineup() {
