@@ -60,7 +60,7 @@
       border-bottom: 1px solid rgba(255,255,255,0.06);
       transition: background 0.3s ease;
     }
-    .nav-logo { display: flex; align-items: center; gap: 0.65rem; }
+    .nav-logo { display: flex; align-items: center; gap: 0.65rem; text-decoration: none; }
     .logo-tv-anchor { position: relative; display: inline-block; }
     .logo-burst-clip { width: 62px; height: 54px; overflow: hidden; position: absolute; bottom: -3px; right: -42px; -webkit-mask-image: radial-gradient(ellipse 72% 68% at 72% 34%, black 52%, transparent 100%); mask-image: radial-gradient(ellipse 72% 68% at 72% 34%, black 52%, transparent 100%); }
     .logo-burst-clip img { position: absolute; height: 62px !important; width: auto !important; max-width: none !important; top: -4px; left: -30px; object-fit: unset !important; margin-bottom: 0 !important; }
@@ -179,9 +179,9 @@
     }
     .btn-primary {
       display: inline-flex; align-items: center; gap: 0.45rem;
-      background: var(--green-500); color: #000;
+      background: var(--green-500); color: #130A4A;
       font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem;
-      letter-spacing: 0.03em; padding: 0.9rem 2rem; border-radius: 8px;
+      line-height: 1; letter-spacing: 0.03em; padding: 0.9rem 2rem; border-radius: 8px;
       text-decoration: none; border: none; cursor: pointer;
       transition: background 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
       box-shadow: 0 4px 24px rgba(57,181,74,0.32);
@@ -192,7 +192,7 @@
       display: inline-flex; align-items: center; gap: 0.45rem;
       background: transparent; color: var(--white);
       font-family: 'Syne', sans-serif; font-weight: 600; font-size: 1rem;
-      padding: 0.9rem 2rem; border-radius: 8px; text-decoration: none;
+      line-height: 1; padding: 0.9rem 2rem; border-radius: 8px; text-decoration: none;
       border: 1.5px solid rgba(255,255,255,0.18); cursor: pointer;
       transition: border-color 0.2s ease, background 0.2s ease, transform 0.15s ease;
     }
@@ -312,7 +312,7 @@
     }
     .plan-pop {
       position: absolute; top: 1.25rem; right: 1.25rem;
-      background: var(--green-500); color: #000;
+      background: var(--green-500); color: #130A4A;
       font-size: 0.67rem; font-weight: 800; letter-spacing: 0.08em;
       text-transform: uppercase; padding: 0.22rem 0.6rem; border-radius: 100px;
     }
@@ -346,7 +346,7 @@
     .plan-cta {
       display: block; text-align: center; padding: 0.85rem;
       border-radius: 8px; font-family: 'Syne', sans-serif; font-weight: 700;
-      font-size: 0.92rem; letter-spacing: 0.03em; text-decoration: none;
+      font-size: 0.92rem; line-height: 1; letter-spacing: 0.03em; text-decoration: none;
       transition: background 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease, border-color 0.2s ease;
     }
     .plan-cta:hover { transform: translateY(-2px); }
@@ -354,7 +354,7 @@
     .plan-cta.outline { border: 1.5px solid rgba(255,255,255,0.2); color: var(--white); }
     .plan-cta.outline:hover { border-color: rgba(255,255,255,0.5); background: rgba(255,255,255,0.05); }
     .plan-cta.solid {
-      background: var(--green-500); color: #000;
+      background: var(--green-500); color: #130A4A;
       box-shadow: 0 4px 20px rgba(57,181,74,0.28);
     }
     .plan-cta.solid:hover { background: var(--green-400); box-shadow: 0 8px 28px rgba(57,181,74,0.44); }
@@ -451,7 +451,7 @@
     .mob-plan.pop .pb { font-size: 2.1rem; }
     .mob-plan .ps { font-size: 0.76rem; color: var(--gray-500); margin-top: 0.15rem; }
     .mob-plan .free-tag {
-      display: inline-block; background: var(--green-500); color: #000;
+      display: inline-block; background: var(--green-500); color: #130A4A;
       font-size: 0.6rem; font-weight: 800; letter-spacing: 0.05em;
       padding: 0.12rem 0.45rem; border-radius: 4px; margin-top: 0.3rem;
     }
@@ -544,7 +544,7 @@
     }
     .contact-link:hover { transform: translateY(-2px); }
     .contact-link:active { transform: translateY(0); }
-    .contact-link.cphone { background: var(--green-500); color: #000; box-shadow: 0 4px 16px rgba(57,181,74,0.28); }
+    .contact-link.cphone { background: var(--green-500); color: #130A4A; box-shadow: 0 4px 16px rgba(57,181,74,0.28); }
     .contact-link.cphone:hover { background: var(--green-400); box-shadow: 0 8px 24px rgba(57,181,74,0.44); }
     .contact-link.cemail { background: rgba(255,255,255,0.1); color: var(--white); border: 1px solid rgba(255,255,255,0.18); }
     .contact-link.cemail:hover { background: rgba(255,255,255,0.16); }
@@ -605,9 +605,9 @@
     .form-group select option { background: var(--dark-700); }
     .form-group textarea { resize: vertical; min-height: 96px; }
     .form-submit {
-      width: 100%; background: var(--green-500); color: #000;
+      width: 100%; background: var(--green-500); color: #130A4A;
       font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem;
-      letter-spacing: 0.03em; padding: 1rem; border: none; border-radius: 8px;
+      line-height: 1; letter-spacing: 0.03em; padding: 1rem; border: none; border-radius: 8px;
       cursor: pointer; margin-top: 0.4rem;
       transition: background 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
       box-shadow: 0 4px 20px rgba(57,181,74,0.28);
@@ -767,9 +767,9 @@
 
   <!-- ── NAVBAR ─────────────────────────────────────────── -->
   <nav id="mainNav">
-    <div class="nav-logo">
+    <a class="nav-logo" href="#" aria-label="Back to top">
       <span class="logo-wmt">WiFi · Mobile · <span class="logo-tv-anchor">TV<div class="logo-burst-clip"><img id="navLogo" src="/Brand_Assets/Brand__Info/Astound-Symbol.png" alt="WiFi, Mobile, TV"></div></span></span>
-    </div>
+    </a>
     <ul class="nav-links" id="navLinks">
       <li><a href="#internet">Internet</a></li>
       <li><a href="#mobile">Mobile</a></li>
